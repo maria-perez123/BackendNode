@@ -20,9 +20,20 @@ async function getMessage(){
     return messages;
 }
 
+async function updateText(id, message){
+    const foundmessage= await Model.findOne({
+        _id:id,
+    });
+    //findById(id) también funciona
+    foundmessage.message=message;
+    const newMessage = await foundmessage.save();
+    return newMessage;
+}
+
 module.exports={
     add: addMessage,
-    list:getMessage
+    list:getMessage,
+    updateText: updateText,
     //get
     //update
     //delete

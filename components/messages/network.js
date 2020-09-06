@@ -22,5 +22,14 @@ router.get('/', function(req, res){
         response.error(req,res,'unexpected error', 500, e);
     })
 })
+router.patch('/:id', function(req, res){
+    controller.updateMessage(req.params.id,req.body.message)
+    .then((data)=>{
+        response.succes(req,res, data, 200);
+    })
+    .catch(e=>{
+        response.error(req,res,'error interno', 500, e);
+    })
+})
 
 module.exports=router;
