@@ -1,7 +1,11 @@
 const express=require('express');
 const bodyParser=require('body-parser');
 
+const db=require('./db');
+
 const router=require('./network/routes');
+
+db('mongodb+srv://user:user1234@cluster0.p2dnd.mongodb.net/telegrom?retryWrites=true&w=majority');
 
 var app=express();
 app.use(bodyParser.json());
