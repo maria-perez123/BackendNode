@@ -14,7 +14,8 @@ router.post('/', function(req, res){
         })
 })
 router.get('/', function(req, res){
-    controller.getMessage()
+    const filterMessage=req.query.user || null;
+    controller.getMessage(filterMessage)
     .then((messagelist)=>{
         response.succes(req,res, messagelist, 200);
     })
