@@ -10,7 +10,7 @@ function addUser(name){
     return store.add(user);
 }
 
-function getMessage(){
+function getUser(){
     return new Promise((resolve, reject)=>{
         resolve(store.list());
     })
@@ -18,5 +18,5 @@ function getMessage(){
 
 module.exports={
     addUser,
-    getMessage
+    getUser
 }

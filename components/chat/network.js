@@ -4,7 +4,7 @@ const response=require('../../network/response');
 const controller=require('./controller')
 
 router.post('/', function(req,res){
-    controller.addUser(req.body.name)
+    controller.addChat(req.body.users)
         .then(data=>{
             response.succes(req,res,data,201);
         })
@@ -13,8 +13,8 @@ router.post('/', function(req,res){
         });
 })
 
-router.get('/', function(req, res){
-    controller.getUser()
+router.get('/:userId', function(req, res){
+    controller.getChats(req.params.userId)
     .then((users)=>{
         response.succes(req,res, users, 200);
     })

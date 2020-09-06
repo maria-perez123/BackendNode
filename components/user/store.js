@@ -5,12 +5,12 @@ function addUser(user){
     return myUser.save();
 }
 
-async function getMessage(){
-    const messages= await Model.find();
-    return messages;
+async function getUser(){
+    const users= await Model.find();
+    return users;
 }
 
 module.exports={
     add: addUser,
-    list:getMessage,
+    list:getUser,
 }
