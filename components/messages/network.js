@@ -6,30 +6,21 @@ const controller=require('./controller')
 router.post('/', function(req, res){
     
     controller.addMessage(req.body.user, req.body.message)
-        .then(()=>{
-            response.succes(req,res, 'creado correctamente', 201)
+        .then((fullMessage)=>{
+            response.succes(req,res, fullMessage, 201)
         })
         .catch(e=>{
             response.error(req, res, 'información invalida', 400, 'error en el controlador');
         })
-
-    // console.log(req.body);
-    // console.log(req.query);
-    // if(req.query.error=="OK"){
-    //     response.error(req, res, 'error inesperado', 500, 'es solo una simulacion de errores');
-    // }else{
-    //res.send('mensaje ' + req.body.text+ ' añadido correctamente');
-    //res.status(201).send();
-    //res.status(201).send([{error:'', body:'creado correctamente'}]);
-    // response.succes(req,res, 'creado correctamente', 201)
-    // }
 })
 router.get('/', function(req, res){
-    console.log(req.headers);
-    res.header({
-        "custon-header":"nuestro valor personalizado"
+    controller.getMessage()
+    .then((messagelist)=>{
+        response.succes(req,res, messagelist, 200);
     })
-    response.succes(req,res, 'lista de mensajes')
+    .catch(e=>{
+        response.error(req,res,'unexpected error', 500, e);
+    })
 })
 
 module.exports=router;
