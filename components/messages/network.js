@@ -1,11 +1,15 @@
 const express=require('express');
+const multer=require('multer');
 const router=express.Router();
 const response=require('../../network/response');
 const controller=require('./controller')
 
-router.post('/', function(req, res){
-    
-    controller.addMessage(req.body.user, req.body.message)
+const upload=multer({
+    dest:'uploads/',
+})
+
+router.post('/', upload.single('file'), function(req, res){
+    controller.addMessage(req.body.chat, req.body.user, req.body.message)
         .then((fullMessage)=>{
             response.succes(req,res, fullMessage, 201)
         })
@@ -14,7 +18,7 @@ router.post('/', function(req, res){
         })
 })
 router.get('/', function(req, res){
-    const filterMessage=req.query.user || null;
+    const filterMessage=req.query.chat || null;
     controller.getMessage(filterMessage)
     .then((messagelist)=>{
         response.succes(req,res, messagelist, 200);

@@ -6,14 +6,12 @@ function addChat(users){
     }
     const chat={
         users:users,
-    };
+};
     return store.add(chat);
 }
 
 function getChats(userId){
-    return new Promise((resolve, reject)=>{
-        resolve(store.list());
-    })
+    return store.list(userId);
 }
 
 module.exports={

@@ -1,11 +1,11 @@
 const Model=require('./model');
 
 function addChat(chat){
-    const myUser=new Model(chat);
-    return myUser.save();
+    const myChat=new Model(chat);
+    return myChat.save();
 }
 
-async function getChats(userId){
+function getChats(userId){
     return new Promise((resolve, reject)=>{
         let filter={};
         if(userId){
