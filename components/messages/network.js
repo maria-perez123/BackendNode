@@ -5,11 +5,11 @@ const response=require('../../network/response');
 const controller=require('./controller')
 
 const upload=multer({
-    dest:'uploads/',
+    dest:'public/files',
 })
 
 router.post('/', upload.single('file'), function(req, res){
-    controller.addMessage(req.body.chat, req.body.user, req.body.message)
+    controller.addMessage(req.body.chat, req.body.user, req.body.message, req.file)
         .then((fullMessage)=>{
             response.succes(req,res, fullMessage, 201)
         })
